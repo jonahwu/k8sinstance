@@ -4,6 +4,7 @@ import (
 	"flag"
 	//"fmt"
 	"github.com/golang/glog"
+	"github.com/k8sinstance/cmd/handler"
 	"github.com/k8sinstance/go/jutils"
 	"github.com/labstack/echo"
 	//	"github.com/labstack/echo/middleware"
@@ -30,7 +31,7 @@ func main() {
 	// and send the pointer to handler
 	//see https://github.com/petronetto/echo-mongo-api/blob/master/handler/handler.go
 	con := 5
-	h := &Handler{CON: &con}
+	h := &handler.Handler{CON: &con}
 
 	e := echo.New()
 
