@@ -35,7 +35,7 @@ func main() {
 
 	e := echo.New()
 
-	e.GET("/", h.GetHostName)
+	e.GET("/*", h.GetHostName)
 	e.GET("/sleep", h.GetToSleep)
 	e.GET("/sleepinf", h.GetToSleepInf)
 	e.Logger.Fatal(e.Start(":8000"))
