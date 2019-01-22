@@ -21,9 +21,10 @@ FROM alpine:latest
 
 COPY --from=build /bin/k8sinstance /k8sinstance
 RUN ls / -alh
+RUN apk add --no-cache curl
+RUN curl -L https://github.com/sequenceiq/docker-alpine-dig/releases/download/v9.10.2/dig.tgz|tar -xzv -C /usr/local/bin/
 #VOLUME /data
 EXPOSE 8000
-
 ENV NOMS_VERSION_NEXT=1
 RUN chmod +x ./k8sinstance
 ENTRYPOINT [ "./k8sinstance" ]
