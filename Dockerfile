@@ -23,6 +23,13 @@ COPY --from=build /bin/k8sinstance /k8sinstance
 RUN ls / -alh
 RUN apk add --no-cache curl
 RUN curl -L https://github.com/sequenceiq/docker-alpine-dig/releases/download/v9.10.2/dig.tgz|tar -xzv -C /usr/local/bin/
+
+RUN apk add --update ca-certificates
+ADD http://github.com/tsenart/vegeta/releases/download/v5.9.0/vegeta-v5.9.0-linux-amd64.tar.gz /go/bin/vegeta.tar.gz
+RUN cd /go/bin && tar xzvf /go/bin/vegeta.tar.gz 
+RUN chmod +x /go/bin/vegeta
+RUN ln -s /go/bin/vegeta /usr/local/bin/vegeta
+COPY httpbench /httpbench
 #VOLUME /data
 EXPOSE 8000
 ENV NOMS_VERSION_NEXT=1
