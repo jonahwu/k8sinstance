@@ -29,6 +29,7 @@ spec:
       - name: goarch
         #image: 172.16.155.136:5000/emotibot-k8s/uwebserverv6
         image: 172.16.155.136:5000/proxy_agent:db28485
+        #args: ["arg1", "arg2", "arg3"]
 
         #readinessProbe:
         #  tcpSocket:
