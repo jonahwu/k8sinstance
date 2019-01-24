@@ -6,7 +6,8 @@ REPO=${REPO_JENKINS:-$REPO}
 CONTAINER="k8sinstance"
 CONTAINER=${CONTAINER_JENKINS:-$CONTAINER}
 
-TAG=$(git rev-parse --short HEAD)
+#TAG=$(git rev-parse --short HEAD)
+TAG=v0.65
 #TAG=test
 
 
@@ -31,6 +32,6 @@ echo "push result to remote"
 cmdpush="docker push $REPO/$CONTAINER:$TAG"
 echo $cmdpush
 echo "or execute it locally"
-cmd1="docker run -it -p 30000:8000 $REPO/$CONTAINER:$TAG"
+cmd1="docker run -dt -p 30000:8000 $REPO/$CONTAINER:$TAG"
 echo "$cmd1"
 #eval $cmd1

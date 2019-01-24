@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	//"fmt"
+	"fmt"
 	"github.com/golang/glog"
 	"github.com/k8sinstance/cmd/handler"
 	"github.com/k8sinstance/go/jutils"
@@ -10,7 +11,11 @@ import (
 	//	"github.com/labstack/echo/middleware"
 )
 
+var flagPort string
+var startPort string
+
 func main() {
+	flag.StringVar(&flagPort, "p", "8000", "set up web port")
 	flag.Parse()
 	// here we setup the default stdout for glog
 	flag.Lookup("logtostderr").Value.Set("true")
@@ -38,7 +43,9 @@ func main() {
 	e.GET("/*", h.GetHostName)
 	e.GET("/sleep", h.GetToSleep)
 	e.GET("/sleepinf", h.GetToSleepInf)
-	e.Logger.Fatal(e.Start(":8000"))
+	startPort := fmt.Sprintf("%s%s", ":", flagPort)
+	e.Logger.Fatal(e.Start(startPort))
+	//e.Logger.Fatal(e.Start(":8000"))
 
 	glog.Flush()
 	select {}
